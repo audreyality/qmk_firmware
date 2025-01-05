@@ -19,7 +19,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LGUI, KC_LALT, KC_LCTL,                            KC_SPC,                             OS_CTLL, OS_FUNL, KC_LEFT, KC_DOWN, KC_RGHT
     ),
     /////////////////////////////////////////////////////////////////////// Exclusive Task Layers /////////////////////////////////////////////////////////////////////
-    [_XTL_BASE] = LAYOUT_65_ansi_blocker(
+    [_XTL_MASK] = LAYOUT_65_ansi_blocker(
         E_X_I_T, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, XXXXXXX,
@@ -31,14 +31,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_F13,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, KC_F14,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          KC_PGUP, KC_F15,
-        _______, _______, _______,                            _______,                            XTLRSVP, XTLRSVP, KC_HOME, KC_PGDN, KC_END
+        _______, _______, _______,                            _______,                            XTLRSVP, FNLRSVP, KC_HOME, KC_PGDN, KC_END
     ),
     [_XTL_LED_MATRIX] = LAYOUT_65_ansi_blocker(
         QK_BOOT, E_X_I_T, E_X_I_T, E_X_I_T, E_X_I_T, E_X_I_T, E_X_I_T, E_X_I_T, E_X_I_T, E_X_I_T, E_X_I_T, E_X_I_T, E_X_I_T,  EE_CLR,   RM_ON,
         _______, RM_TOGG, RM_VALU, RM_SPDU, RM_HUEU, RM_SATU, _______, _______, _______, _______, _______, _______, _______, _______,  RM_OFF,
         _______, RM_NEXT, RM_VALD, RM_SPDD, RM_HUED, RM_SATD, _______, _______, _______, _______, _______, _______,          _______, RM_VALU,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          RM_SPDU, RM_VALD,
-        _______, _______, _______,                            _______,                            XTLRSVP, XTLRSVP, RM_PREV, RM_SPDD, RM_NEXT
+        _______, _______, _______,                            _______,                            XTLRSVP, FNLRSVP, RM_PREV, RM_SPDD, RM_NEXT
     ),
     ///////////////////////////////////////////////////////////////////////// Modify Default Layers ///////////////////////////////////////////////////////////////////
     [_MDL_HELLDIVERS] = LAYOUT_65_ansi_blocker(
@@ -50,11 +50,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     /////////////////////////////////////////////////////////////////////// Control Layer (ALWAYS LAST) ///////////////////////////////////////////////////////////////
     [_TTL_CONTROL] = LAYOUT_65_ansi_blocker(
-        QK_BOOT, DF_MCOS, DF_WIND, TG_PROG, TG_NUMP, TG_HELL, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, TG_LEDM, EE_CLR,  KC_WAKE,
+        QK_BOOT, DF_MCOS, DF_WIND, TG_HELL, TG_NUMP, TG_PROG, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, TG_LEDM, EE_CLR,  KC_WAKE,
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_SLEP,
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, KC_VOLU,
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, KC_VOLD,
-        XXXXXXX, XXXXXXX, XXXXXXX,                            XXXXXXX,                            OS_CTLL, E_X_I_T, KC_MPRV, KC_MPLY, KC_MNXT
+        XXXXXXX, XXXXXXX, XXXXXXX,                            XXXXXXX,                            KC_TRNS, E_X_I_T, KC_MPRV, KC_MPLY, KC_MNXT
     )
     /////////////////////////////////////////////////////////////////////// END //////////////////////////////////////////////////////////////////////////////////////
 };

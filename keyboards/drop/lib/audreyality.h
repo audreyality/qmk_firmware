@@ -17,7 +17,7 @@
 enum layer_names {
     _DFL_MACOS,
     _DFL_WINDOWS,
-    _XTL_BASE,
+    _XTL_MASK,
     _XTL_FUNCTION,
     _XTL_LED_MATRIX,
     _MDL_HELLDIVERS,
