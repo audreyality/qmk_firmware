@@ -41,7 +41,7 @@ enum custom_keycodes {
 #define DF_MCOS DF(_DFL_MACOS)
 #define DF_WIND DF(_DFL_WINDOWS)
 #define OS_FUNL OSL(_XTL_FUNCTION)
-#define OS_CTLL OSL(_TTL_CONTROL)
+#define OS_CTLL MO(_TTL_CONTROL)
 #define TG_NUMP XXXXXXX
 #define TG_PROG XXXXXXX
 #define TG_LEDM TG(_XTL_LED_MATRIX)
