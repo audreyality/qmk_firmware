@@ -40,7 +40,7 @@ enum custom_keycodes {
 // layer control
 #define DF_MCOS DF(_DFL_MACOS)
 #define DF_WIND DF(_DFL_WINDOWS)
-#define OS_FUNL OSL(_XTL_FUNCTION)
+#define OS_FUNL MO(_XTL_FUNCTION)
 #define OS_CTLL MO(_TTL_CONTROL)
 #define TG_NUMP XXXXXXX
 #define TG_PROG XXXXXXX

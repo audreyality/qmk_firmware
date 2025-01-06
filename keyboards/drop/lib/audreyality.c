@@ -24,6 +24,25 @@ inline bool flap(keyrecord_t *record, uint16_t code) {
     return false; // Skip all further processing of this key
 }
 
+void mask_layer(uint8_t layer, bool mask_enabled) {
+    // mask leds by toggling their on/off controls
+    for (uint8_t row = 0; row < MATRIX_ROWS; ++row) {
+        for (uint8_t col = 0; col < MATRIX_COLS; ++col) {
+            uint8_t index = g_led_config.matrix_co[row][col];
+            if(index == NO_LED) continue;
+
+            // turning the LED off lets the animation logic continue to
+            // update LED color for the active keys on the layer.
+            bool enable = !mask_enabled || keymap_key_to_keycode(layer, (keypos_t){col,row}) > KC_TRNS;
+            is31fl3733_set_led_control_register(index, enable, enable, enable);
+        }
+    }
+
+    // transmit control codes
+    is31fl3733_update_led_control_registers(0);
+    is31fl3733_update_led_control_registers(1);
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case KC_SPOT:
@@ -51,24 +70,29 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     switch (highest) {
         case _DFL_MACOS:
         case _DFL_WINDOWS:
+            mask_layer(highest, false);
             rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
             rgb_matrix_sethsv_noeeprom(215, 240, 80); // fuscia
             break;
         case _XTL_FUNCTION:
-            rgb_matrix_mode_noeeprom(RGB_MATRIX_ALPHAS_MODS);
-            rgb_matrix_sethsv_noeeprom(184, 237, 140);
+            mask_layer(highest, true);
+            rgb_matrix_mode_noeeprom(RGB_MATRIX_BREATHING);
+            rgb_matrix_sethsv_noeeprom(215, 240, 80); // fuscia
             // speed controls offset; max 255
-            rgb_matrix_set_speed_noeeprom(30);
+            rgb_matrix_set_speed_noeeprom(60);
             break;
         case _XTL_LED_MATRIX:
+            mask_layer(highest, false);
             rgb_matrix_mode_noeeprom(RGB_MATRIX_CYCLE_PINWHEEL);
             rgb_matrix_sethsv_noeeprom(0, 172, 50);
             break;
         case _TTL_CONTROL:
+            mask_layer(highest, false);
             rgb_matrix_mode_noeeprom(RGB_MATRIX_RAINBOW_MOVING_CHEVRON);
             rgb_matrix_set_speed_noeeprom(60);
             break;
         case _MDL_HELLDIVERS:
+            mask_layer(highest, true);
             // solid yellow with fast-fade from orangey-yellow
             // when the keys are pressed
             rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_REACTIVE);
