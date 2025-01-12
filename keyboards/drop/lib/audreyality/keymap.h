@@ -19,6 +19,7 @@ enum layer_names {
     _XTL_MASK,
     _XTL_FUNCTION,
     _XTL_LED_MATRIX,
+    _XTL_NUMPAD,
 
     // DTL - default task layer; these layers tweak the default layer,
     //       typically by extending or disabling selected keys.
@@ -41,11 +42,13 @@ enum custom_keycodes {
     MACOS_FOCUS,
 
     SWAP_DFL_HOME,             // persistent layer
-    GOTO_DFL_ACTIVE,           // persistent layer
+    GOTO_DFL,                  // persistent layer
     GOTO_DTL_HELLDIVERS,       // persistent layer
     GOTO_DTL_PROGRAMMING,      // persistent layer
     GOTO_DTL_HOME,             // persistent layer; board-configurable w/ #define
-    GOTO_XTL_MASK,             // runtime layer
+    GOTO_XTL_MASK,
+    GOTO_XTL_NUMPAD,
+    GOTO_XTL_LED_MATRIX,
 
     EEPROM_WRITE_SETTINGS,     // save layers & pretty_source
 
@@ -77,11 +80,14 @@ enum custom_keycodes {
 #endif
 
 // _user logic shorthand
+#define D_F_L_T GOTO_DFL
 #define SWAP_OS SWAP_DFL_HOME
-#define D_F_L_T GOTO_DFL_ACTIVE
-#define D_I_V_E GOTO_DTL_HELLDIVERS
 #define H_O_M_E GOTO_DTL_HOME
+#define D_I_V_E GOTO_DTL_HELLDIVERS
+#define C_O_D_E GOTO_DTL_PROGRAMMING
 #define M_A_S_K GOTO_XTL_MASK
+#define _NUMPD_ GOTO_XTL_NUMPAD
+#define _L_E_D_ GOTO_XTL_LED_MATRIX
 #define S_A_V_E EEPROM_WRITE_SETTINGS
 
 // layer control shorthand

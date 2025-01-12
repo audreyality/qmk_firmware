@@ -36,7 +36,6 @@ uint8_t qmk_xtl(void) {
     }
 
     // ** always evaluate separately **
-    // _XTL_CONTROL overrides DTLs and other XTL layers
     if (layer_state_is(_XTL_CONTROL)){
         xtl = _XTL_CONTROL;
     }
@@ -60,8 +59,10 @@ void to_layer(uint8_t layer) {
         case _XTL_CONTROL:
         case _XTL_FUNCTION:
         case _XTL_LED_MATRIX:
-        case _XTL_MASK:
             layer_on(layer);
+            // falls through
+
+        case _XTL_MASK:
             layer_on(_XTL_MASK);
             return;
 
