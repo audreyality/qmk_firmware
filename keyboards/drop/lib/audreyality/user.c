@@ -1,5 +1,12 @@
 #include "common.h"
 
+void keyboard_post_init_user(void) {
+    // TODO: when working with led matrix driver,
+    //   initialize the matrix w/ all LEDS on.
+
+    to_home_layer();
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case MACOS_SPOTLIGHT:
@@ -43,10 +50,4 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     }
     return true;
-}
-void keyboard_post_init_user(void) {
-    // TODO: when working with led matrix driver,
-    //   initialize the matrix w/ all LEDS on.
-
-    to_home_layer();
 }
