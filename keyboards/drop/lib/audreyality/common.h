@@ -75,6 +75,7 @@ typedef struct {
     bool load;
 } layer_control_t;
 
+#define SWAP_OS SWAP_DFL_HOME
 #define D_F_L_T GOTO_DFL_ACTIVE
 #define D_I_V_E GOTO_DTL_HELLDIVERS
 #define H_O_M_E GOTO_DTL_HOME
@@ -84,6 +85,7 @@ typedef struct {
 #define DF_WIND DF(_DFL_WINDOWS)
 #define OS_FUNL OSL(_XTL_FUNCTION)
 #define MO_CTLL MO(_XTL_CONTROL)
+#define MO_LEDM TG(_XTL_LED_MATRIX)
 #define TG_NUMP XXXXXXX
 #define TG_PROG XXXXXXX
 #define TG_LEDM TG(_XTL_LED_MATRIX)
