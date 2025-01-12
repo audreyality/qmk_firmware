@@ -59,6 +59,23 @@ enum custom_keycodes {
 #define KC_DICT MACOS_DICTATION
 #define KC_DND  MACOS_FOCUS
 
+// mac button map[ing]
+#define AU_CMND KC_LGUI
+#define AU_OPTN KC_LALT
+#define AU_MCTL KC_LCTL
+
+// make windows mac-like by switching ctrl and alt
+// (helldivers mode is still classic windows layut)
+#ifndef AUD_MACLIKE_WCTL
+#   define AU_ALT  KC_LALT
+#   define AU_WNDW KC_LGUI
+#   define AU_WCTL KC_LCTL
+#else
+#   define AU_ALT  KC_LCTL
+#   define AU_WNDW KC_LGUI
+#   define AU_WCTL KC_LALT
+#endif
+
 #define S_A_V_E EEPROM_WRITE_SETTINGS
 
 // layer control data structures & shorthand
