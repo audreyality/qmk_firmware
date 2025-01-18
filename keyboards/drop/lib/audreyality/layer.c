@@ -48,19 +48,20 @@ void to_layer(uint8_t layer) {
         case _DFL_MACOS:
         case _DFL_WINDOWS:
             layer_move(layer);
-            break;
+            return;
 
         case _DTL_HELLDIVERS:
         case _DTL_PROGRAMMING:
             layer_move(qmk_dfl());
             layer_on(layer);
-            break;
+            return;
 
         case _XTL_CONTROL:
         case _XTL_FUNCTION:
         case _XTL_LED_MATRIX:
+            layer_on(_XTL_MASK);
             layer_on(layer);
-            // falls through
+            return;
 
         case _XTL_MASK:
             layer_on(_XTL_MASK);
@@ -68,10 +69,16 @@ void to_layer(uint8_t layer) {
 
         default:
             layer_off(_XTL_MASK);
-            break;
+            return;
     }
+}
 
-    return;
+void swap_default_layer(void) {
+    if(qmk_dfl() == _DFL_MACOS) {
+        set_single_persistent_default_layer(_DFL_WINDOWS);
+    } else  {
+        set_single_persistent_default_layer(_DFL_MACOS);
+    }
 }
 
 void to_default_layer(void) {

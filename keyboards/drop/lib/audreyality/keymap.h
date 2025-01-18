@@ -50,11 +50,11 @@ enum custom_keycodes {
     GOTO_XTL_NUMPAD,
     GOTO_XTL_LED_MATRIX,
 
-    EEPROM_WRITE_SETTINGS,     // save layers & pretty_source
-
-    USE_PRETTY_LIGHT_SOURCE,   // override layer lighting; runtime setting
-    USE_PRETTY_BACKLIGHT,      // no-animation; board-confgurable w/ #define;
-                               // saves pretty_source
+    // runtime lighting controls
+    TOGGLE_LAYER_LIGHT_SOURCE,
+    USE_LAYER_LIGHT_SOURCE,
+    USE_PRETTY_LIGHT_SOURCE,
+    USE_PRETTY_BACKLIGHT,
 };
 
 // macos keycode shorthand
@@ -88,7 +88,10 @@ enum custom_keycodes {
 #define M_A_S_K GOTO_XTL_MASK
 #define _NUMPD_ GOTO_XTL_NUMPAD
 #define _L_E_D_ GOTO_XTL_LED_MATRIX
-#define S_A_V_E EEPROM_WRITE_SETTINGS
+// reserved to save audreyality state to eeprom
+#define S_A_V_E XXXXXXX
+// reserved to output audreyality state as text
+#define _PRINT_ XXXXXXX
 
 // layer control shorthand
 #define DF_MCOS DF(_DFL_MACOS)

@@ -23,7 +23,7 @@
         "command": false,
         "console": false,
         "extrakey": true,
-        "mousekey": true,
+        "mousekey": false,
         "nkro": true
     },
     "community_layouts": ["65_ansi_blocker"],
