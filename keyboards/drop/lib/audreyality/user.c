@@ -1,10 +1,16 @@
 #include "common.h"
 
 void keyboard_post_init_user(void) {
+    load_settings();
+
+    if(get_init_home()) {
+        to_home_layer();
+    } else {
+        to_default_layer();
+    }
+
     // TODO: when working with led matrix driver,
     //   initialize the matrix w/ all LEDS on.
-
-    to_home_layer();
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -18,6 +24,26 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
         case SWAP_DFL_HOME:
             swap_default_layer();
+            return false;
+
+        case STICKY_HOME_ON:
+            set_sticky(true);
+            return false;
+
+        case STICKY_HOME_OFF:
+            set_sticky(false);
+            return false;
+
+        case STICKY_HOME_TOGGLE:
+            try_toggle_init_home();
+            return false;
+
+        case STICKY_HOME_SET_DEFAULT:
+            set_init_home();
+            return false;
+
+        case STICKY_HOME_SET_HOME:
+            set_init_default();
             return false;
 
         case GOTO_DFL:

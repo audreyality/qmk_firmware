@@ -37,15 +37,25 @@ enum layer_names {
 enum custom_keycodes {
     RESERVED = SAFE_RANGE,
 
+    // MACOS keyboard support
     MACOS_SPOTLIGHT,
     MACOS_DICTATION,
     MACOS_FOCUS,
+    // TODO: MACOS_GLOBE // <- for emoji; requires vendor hack
 
-    SWAP_DFL_HOME,             // persistent layer
-    GOTO_DFL,                  // persistent layer
-    GOTO_DTL_HELLDIVERS,       // persistent layer
-    GOTO_DTL_PROGRAMMING,      // persistent layer
-    GOTO_DTL_HOME,             // persistent layer; board-configurable w/ #define
+    // boot layer controls
+    SWAP_DFL_HOME,
+    STICKY_HOME_ON,
+    STICKY_HOME_OFF,
+    STICKY_HOME_TOGGLE,
+    STICKY_HOME_SET_DEFAULT,
+    STICKY_HOME_SET_HOME,
+
+    //
+    GOTO_DFL,
+    GOTO_DTL_HELLDIVERS,
+    GOTO_DTL_PROGRAMMING,
+    GOTO_DTL_HOME,        // board-configurable w/ #define
     GOTO_XTL_MASK,
     GOTO_XTL_NUMPAD,
     GOTO_XTL_LED_MATRIX,
