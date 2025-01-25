@@ -12,7 +12,7 @@ typedef union user_data {
     struct {
         /** match (value) :
           *   disabled => startup on home layer. If a home layer isn't
-          *               configured, start on the .
+          *               configured, start on the default layer.
           *   enabled  => value tracks startup layer:
           *       true -> startup on home layer.
           *      false -> startup on default layer.
@@ -99,17 +99,17 @@ void set_sticky_pretty(sticky_pretty_t value) {
     save();
 }
 
-bool is_sticky_home(sticky_home_t value) {
+bool use_sticky_home(sticky_home_t value) {
     sticky_t* sticky = sticky_bit(HOME_LAYER_BITS);
     sticky_home_t current = STICKY_DEFAULT_LAYER;
-    if(sticky->enabled && sticky->value) {
+    if(!sticky->enabled || sticky->value) {
         current = STICKY_HOME_LAYER;
     }
 
     return value == current;
 }
 
-bool is_sticky_pretty(sticky_pretty_t value) {
+bool use_sticky_pretty(sticky_pretty_t value) {
     sticky_t* sticky = sticky_bit(PRETTY_LIGHTING_BITS);
     sticky_pretty_t current = STICKY_DISABLE_LIGHTING;
     if(sticky->enabled && sticky->value) {

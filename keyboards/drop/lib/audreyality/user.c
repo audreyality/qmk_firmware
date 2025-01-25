@@ -3,7 +3,7 @@
 void keyboard_post_init_user(void) {
     load_settings();
 
-    if(is_sticky_home(STICKY_HOME_LAYER)) {
+    if(use_sticky_home(STICKY_HOME_LAYER)) {
         to_home_layer();
     } else {
         to_default_layer();

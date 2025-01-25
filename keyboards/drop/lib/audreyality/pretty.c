@@ -65,8 +65,8 @@ void set_pretty_speed(uint8_t speed) {
 
 void set_source(animation_source source) {
     animation_t* src = source == LAYER
-        ? &pretty_src
-        : &layer_src;
+        ? &layer_src
+        : &pretty_src;
 
     rgb_matrix_sethsv_noeeprom(src->hsv.h, src->hsv.s, src->hsv.v);
     rgb_matrix_set_speed_noeeprom(src->speed);
