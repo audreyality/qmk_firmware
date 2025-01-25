@@ -8,6 +8,14 @@ enum layer_names {
     _DFL_MACOS,
     _DFL_WINDOWS,
 
+    // DTL - default task layer; these layers tweak the default layer,
+    //       typically by extending or disabling selected keys.
+    //       * They are typically toggled using explicit commands.
+    //       * They are mostly transparent to a default layer.
+    //       * Their enabled state persists across reboots in eeprom.
+    _DTL_HELLDIVERS,
+    _DTL_PROGRAMMING,
+
     // XTL - exclusive task layer; these layers are typically toggled
     //       into `TG(AUD_XTL_NUMPAD)`
     //       * MASK layer disables all keycodes from the default
@@ -20,14 +28,6 @@ enum layer_names {
     _XTL_FUNCTION,
     _XTL_LED_MATRIX,
     _XTL_NUMPAD,
-
-    // DTL - default task layer; these layers tweak the default layer,
-    //       typically by extending or disabling selected keys.
-    //       * They are typically toggled using explicit commands.
-    //       * They are mostly transparent to a default layer.
-    //       * Their enabled state persists across reboots in eeprom.
-    _DTL_HELLDIVERS,
-    _DTL_PROGRAMMING,
 
     // `_XTL_CONTROL` must be last to maintain universal reachability
     _XTL_CONTROL

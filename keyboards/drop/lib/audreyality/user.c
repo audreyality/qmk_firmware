@@ -2,6 +2,7 @@
 
 void keyboard_post_init_user(void) {
     load_settings();
+    init_pretty_from_qmk();
 
     if(use_sticky_home(STICKY_HOME_LAYER)) {
         to_home_layer();
@@ -45,17 +46,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             to_home_layer();
             return false;
 
-        case STICKY_LIGHT_ENABLE:
-            enable_sticky(PRETTY_LIGHTING_BITS);
-            return false;
         case STICKY_LIGHT_DISABLE:
             disable_sticky(PRETTY_LIGHTING_BITS);
+            rgb_matrix_enable_noeeprom();
             return false;
         case STICKY_LIGHT_USE_PRETTY:
             set_sticky_pretty(STICKY_PRETTY_LIGHTING);
+            rgb_matrix_enable_noeeprom();
             return false;
         case STICKY_LIGHT_USE_NO_LIGHTING:
             set_sticky_pretty(STICKY_NO_LIGHTING);
+            rgb_matrix_disable_noeeprom();
             return false;
 
         case GOTO_DFL:
