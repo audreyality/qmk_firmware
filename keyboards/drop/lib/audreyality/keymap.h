@@ -8,6 +8,14 @@ enum layer_names {
     _DFL_MACOS,
     _DFL_WINDOWS,
 
+    // DTL - default task layer; these layers tweak the default layer,
+    //       typically by extending or disabling selected keys.
+    //       * They are typically toggled using explicit commands.
+    //       * They are mostly transparent to a default layer.
+    //       * Their enabled state persists across reboots in eeprom.
+    _DTL_HELLDIVERS,
+    _DTL_PROGRAMMING,
+
     // XTL - exclusive task layer; these layers are typically toggled
     //       into `TG(AUD_XTL_NUMPAD)`
     //       * MASK layer disables all keycodes from the default
@@ -21,40 +29,47 @@ enum layer_names {
     _XTL_LED_MATRIX,
     _XTL_NUMPAD,
 
-    // DTL - default task layer; these layers tweak the default layer,
-    //       typically by extending or disabling selected keys.
-    //       * They are typically toggled using explicit commands.
-    //       * They are mostly transparent to a default layer.
-    //       * Their enabled state persists across reboots in eeprom.
-    _DTL_HELLDIVERS,
-    _DTL_PROGRAMMING,
-
     // `_XTL_CONTROL` must be last to maintain universal reachability
     _XTL_CONTROL
     // NB: max quanity of layers is 16
 };
 
 enum custom_keycodes {
-    RESERVED = SAFE_RANGE,
+    SAVE_SETTINGS = SAFE_RANGE,
 
+    // MACOS keyboard support
     MACOS_SPOTLIGHT,
     MACOS_DICTATION,
     MACOS_FOCUS,
+    // TODO: MACOS_GLOBE // <- for emoji; requires vendor hack
 
-    SWAP_DFL_HOME,             // persistent layer
-    GOTO_DFL,                  // persistent layer
-    GOTO_DTL_HELLDIVERS,       // persistent layer
-    GOTO_DTL_PROGRAMMING,      // persistent layer
-    GOTO_DTL_HOME,             // persistent layer; board-configurable w/ #define
+    // boot controls
+    SWAP_DFL_HOME,
+    STICKY_HOME_ENABLE,
+    STICKY_HOME_DISABLE,
+    STICKY_HOME_TOGGLE,
+    STICKY_HOME_USE_DEFAULT,
+    STICKY_HOME_USE_HOME,
+    STICKY_LIGHT_ENABLE,
+    STICKY_LIGHT_DISABLE,
+    STICKY_LIGHT_TOGGLE,
+    STICKY_LIGHT_USE_PRETTY,
+    STICKY_LIGHT_USE_NO_LIGHTING,
+
+    // layer selection
+    GOTO_DFL,
+    GOTO_DTL_HOME,        // board-configurable w/ #define
+    GOTO_DTL_HELLDIVERS,
+    GOTO_DTL_PROGRAMMING,
     GOTO_XTL_MASK,
     GOTO_XTL_NUMPAD,
     GOTO_XTL_LED_MATRIX,
 
-    EEPROM_WRITE_SETTINGS,     // save layers & pretty_source
-
-    USE_PRETTY_LIGHT_SOURCE,   // override layer lighting; runtime setting
-    USE_PRETTY_BACKLIGHT,      // no-animation; board-confgurable w/ #define;
-                               // saves pretty_source
+    // runtime lighting controls
+    TOGGLE_LAYER_LIGHT_SOURCE,
+    USE_LAYER_LIGHT_SOURCE,
+    USE_PRETTY_LIGHT_SOURCE,
+    USE_PRETTY_BACKLIGHT,
 };
 
 // macos keycode shorthand
@@ -88,7 +103,19 @@ enum custom_keycodes {
 #define M_A_S_K GOTO_XTL_MASK
 #define _NUMPD_ GOTO_XTL_NUMPAD
 #define _L_E_D_ GOTO_XTL_LED_MATRIX
-#define S_A_V_E EEPROM_WRITE_SETTINGS
+// reserved to save audreyality state to eeprom
+#define S_A_V_E SAVE_SETTINGS
+// reserved to output audreyality state as text
+#define _PRINT_ XXXXXXX
+
+// sticky bits shorthand
+#define STH_ON  STICKY_HOME_ENABLE
+#define STH_OFF STICKY_HOME_DISABLE
+#define STH_DEF STICKY_HOME_USE_DEFAULT
+#define STL_OFF STICKY_LIGHT_DISABLE
+#define STLNONE STICKY_LIGHT_USE_NO_LIGHTING
+#define STLPRTY STICKY_LIGHT_USE_PRETTY
+
 
 // layer control shorthand
 #define DF_MCOS DF(_DFL_MACOS)
@@ -96,8 +123,8 @@ enum custom_keycodes {
 #define OS_FUNL OSL(_XTL_FUNCTION)
 #define MO_CTLL MO(_XTL_CONTROL)
 #define MO_LEDM TG(_XTL_LED_MATRIX)
-#define TG_NUMP XXXXXXX
-#define TG_PROG XXXXXXX
+#define TG_NUMP TG(_XTL_NUMPAD)
+#define TG_PROG TG(_DTL_PROGRAMMING)
 #define TG_LEDM TG(_XTL_LED_MATRIX)
 #define TG_HELL TG(_DTL_HELLDIVERS)
 
