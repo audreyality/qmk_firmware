@@ -50,12 +50,17 @@ enum custom_keycodes {
     STICKY_HOME_TOGGLE,
     STICKY_HOME_SET_DEFAULT,
     STICKY_HOME_SET_HOME,
+    STICKY_LIGHT_ON,
+    STICKY_LIGHT_OFF,
+    STICKY_LIGHT_TOGGLE,
+    STICKY_LIGHT_SET_PRETTY,
+    STICKY_LIGHT_SET_DISABLED,
 
-    //
+    // layer selection
     GOTO_DFL,
+    GOTO_DTL_HOME,        // board-configurable w/ #define
     GOTO_DTL_HELLDIVERS,
     GOTO_DTL_PROGRAMMING,
-    GOTO_DTL_HOME,        // board-configurable w/ #define
     GOTO_XTL_MASK,
     GOTO_XTL_NUMPAD,
     GOTO_XTL_LED_MATRIX,

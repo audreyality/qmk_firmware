@@ -35,3 +35,18 @@ typedef enum animation_source {
     LAYER = 0,
     PRETTY,
 } animation_source;
+
+typedef enum sticky_home {
+    STICKY_HOME_LAYER,
+    STICKY_DEFAULT_LAYER
+} sticky_home_t;
+
+typedef enum sticky_pretty {
+    STICKY_PRETTY_LIGHTING,
+    STICKY_DISABLE_LIGHTING
+} sticky_pretty_t;
+
+typedef enum sticky_target {
+    HOME_LAYER_BITS,
+    PRETTY_LIGHTING_BITS
+} sticky_target_t;

@@ -3,7 +3,7 @@
 void keyboard_post_init_user(void) {
     load_settings();
 
-    if(get_init_home()) {
+    if(is_sticky_home(STICKY_HOME_LAYER)) {
         to_home_layer();
     } else {
         to_default_layer();
@@ -27,50 +27,56 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
 
         case STICKY_HOME_ON:
-            set_sticky(true);
+            enable_sticky(PRETTY_LIGHTING_BITS);
             return false;
-
         case STICKY_HOME_OFF:
-            set_sticky(false);
+            disable_sticky(PRETTY_LIGHTING_BITS);
             return false;
-
         case STICKY_HOME_TOGGLE:
-            try_toggle_init_home();
+            try_toggle_sticky_value(PRETTY_LIGHTING_BITS);
             return false;
-
         case STICKY_HOME_SET_DEFAULT:
-            set_init_home();
+            set_sticky_home(STICKY_DEFAULT_LAYER);
+            return false;
+        case STICKY_HOME_SET_HOME:
+            set_sticky_home(STICKY_HOME_LAYER);
             return false;
 
-        case STICKY_HOME_SET_HOME:
-            set_init_default();
+        case STICKY_LIGHT_ON:
+            enable_sticky(PRETTY_LIGHTING_BITS);
+            return false;
+        case STICKY_LIGHT_OFF:
+            disable_sticky(PRETTY_LIGHTING_BITS);
+            return false;
+        case STICKY_LIGHT_TOGGLE:
+            try_toggle_sticky_value(PRETTY_LIGHTING_BITS);
+            return false;
+        case STICKY_LIGHT_SET_PRETTY:
+            set_sticky_pretty(STICKY_PRETTY_LIGHTING);
+            return false;
+        case STICKY_LIGHT_SET_DISABLED:
+            set_sticky_pretty(STICKY_DISABLE_LIGHTING);
             return false;
 
         case GOTO_DFL:
             to_default_layer();
             return false;
-
         case GOTO_DTL_HOME:
             to_home_layer();
             return false;
-
         case GOTO_DTL_HELLDIVERS:
             to_layer(_DTL_HELLDIVERS);
             return false;
-
         case GOTO_DTL_PROGRAMMING:
             to_layer(_DTL_PROGRAMMING);
             return false;
-
         case GOTO_XTL_MASK:
             to_layer(_XTL_MASK);
             return false;
-
         case GOTO_XTL_LED_MATRIX:
             set_source(PRETTY);
             to_layer(_XTL_LED_MATRIX);
             return false;
-
         case GOTO_XTL_NUMPAD:
             to_layer(_XTL_NUMPAD);
             return false;
@@ -79,11 +85,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case USE_LAYER_LIGHT_SOURCE:
             set_source(LAYER);
             return false;
-
         case USE_PRETTY_LIGHT_SOURCE:
             set_source(PRETTY);
             return false;
-
         // pretty animation controls
         case USE_PRETTY_BACKLIGHT:
             init_pretty_backlight();
