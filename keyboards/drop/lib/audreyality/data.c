@@ -111,10 +111,13 @@ bool use_sticky_home(sticky_home_t value) {
 
 bool use_sticky_pretty(sticky_pretty_t value) {
     sticky_t* sticky = sticky_bit(PRETTY_LIGHTING_BITS);
-    sticky_pretty_t current = STICKY_DISABLE_LIGHTING;
-    if(sticky->enabled && sticky->value) {
-        current = STICKY_PRETTY_LIGHTING;
+    if(!sticky->enabled) {
+        return false;
     }
+
+    sticky_pretty_t current = sticky->value
+        ? STICKY_PRETTY_LIGHTING
+        : STICKY_DISABLE_LIGHTING;
 
     return value == current;
 }

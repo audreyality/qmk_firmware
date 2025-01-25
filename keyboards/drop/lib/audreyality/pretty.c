@@ -64,10 +64,16 @@ void set_pretty_speed(uint8_t speed) {
 }
 
 void set_source(animation_source source) {
-    animation_t* src = source == LAYER
-        ? &layer_src
+    if(use_sticky_pretty(STICKY_DISABLE_LIGHTING)) {
+        rgb_matrix_disable_noeeprom();
+        return;
+    }
+
+    animation_t* src = use_sticky_pretty(STICKY_PRETTY_LIGHTING) ? &pretty_src
+        : source == LAYER ? &layer_src
         : &pretty_src;
 
+    rgb_matrix_enable_noeeprom();
     rgb_matrix_sethsv_noeeprom(src->hsv.h, src->hsv.s, src->hsv.v);
     rgb_matrix_set_speed_noeeprom(src->speed);
     rgb_matrix_mode_noeeprom(src->animation);
