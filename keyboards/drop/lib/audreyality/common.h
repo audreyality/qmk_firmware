@@ -36,14 +36,15 @@ typedef enum animation_source {
     PRETTY,
 } animation_source;
 
+// order matches true/false sticky values
 typedef enum sticky_home {
-    STICKY_HOME_LAYER,
-    STICKY_DEFAULT_LAYER
+    STICKY_DEFAULT_LAYER,
+    STICKY_HOME_LAYER
 } sticky_home_t;
 
 typedef enum sticky_pretty {
     STICKY_PRETTY_LIGHTING,
-    STICKY_DISABLE_LIGHTING
+    STICKY_NO_LIGHTING
 } sticky_pretty_t;
 
 typedef enum sticky_target {

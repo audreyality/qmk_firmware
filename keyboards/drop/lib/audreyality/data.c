@@ -32,7 +32,7 @@ typedef union user_data {
 
 user_data_t usr;
 
-void save(void) {
+void save_settings(void) {
     eeconfig_update_user(usr.raw);
 }
 
@@ -43,7 +43,7 @@ void load_settings(void) {
     if(!initialized) {
         usr.data.home = (sticky_t) { .enabled = false, .value = true };
         usr.data.pretty = (sticky_t) { .enabled = false, .value = true };
-        save();
+        save_settings();
     }
 }
 
@@ -57,7 +57,7 @@ bool try_toggle_sticky_value(sticky_target_t target) {
     if(sticky_bit(target)->enabled) {
         sticky_t* sticky = sticky_bit(target);
         sticky->value = !sticky->value;
-        save();
+        save_settings();
 
         return true;
     }
@@ -69,7 +69,7 @@ bool try_set_sticky_value(sticky_target_t target, bool value) {
     if(sticky_bit(target)->enabled) {
         sticky_t* sticky = sticky_bit(target);
         sticky->value = value;
-        save();
+        save_settings();
 
         return true;
     }
@@ -79,24 +79,24 @@ bool try_set_sticky_value(sticky_target_t target, bool value) {
 
 void disable_sticky(sticky_target_t target) {
     sticky_bit(target)->enabled = false;
-    save();
+    save_settings();
 }
 
 void enable_sticky(sticky_target_t target) {
     sticky_bit(target)->enabled = true;
-    save();
+    save_settings();
 }
 
 void set_sticky_home(sticky_home_t value) {
     sticky_bit(HOME_LAYER_BITS)->enabled = true;
     sticky_bit(HOME_LAYER_BITS)->value = value == STICKY_HOME_LAYER;
-    save();
+    save_settings();
 }
 
 void set_sticky_pretty(sticky_pretty_t value) {
     sticky_bit(PRETTY_LIGHTING_BITS)->enabled = true;
     sticky_bit(PRETTY_LIGHTING_BITS)->value = value == STICKY_PRETTY_LIGHTING;
-    save();
+    save_settings();
 }
 
 bool use_sticky_home(sticky_home_t value) {
@@ -117,7 +117,7 @@ bool use_sticky_pretty(sticky_pretty_t value) {
 
     sticky_pretty_t current = sticky->value
         ? STICKY_PRETTY_LIGHTING
-        : STICKY_DISABLE_LIGHTING;
+        : STICKY_NO_LIGHTING;
 
     return value == current;
 }

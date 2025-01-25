@@ -26,36 +26,36 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             swap_default_layer();
             return false;
 
-        case STICKY_HOME_ON:
-            enable_sticky(PRETTY_LIGHTING_BITS);
-            return false;
-        case STICKY_HOME_OFF:
-            disable_sticky(PRETTY_LIGHTING_BITS);
-            return false;
-        case STICKY_HOME_TOGGLE:
-            try_toggle_sticky_value(PRETTY_LIGHTING_BITS);
-            return false;
-        case STICKY_HOME_SET_DEFAULT:
-            set_sticky_home(STICKY_DEFAULT_LAYER);
-            return false;
-        case STICKY_HOME_SET_HOME:
-            set_sticky_home(STICKY_HOME_LAYER);
+        case SAVE_SETTINGS:
+            save_settings();
             return false;
 
-        case STICKY_LIGHT_ON:
+        case STICKY_HOME_ENABLE:
+            enable_sticky(HOME_LAYER_BITS);
+            return false;
+        case STICKY_HOME_DISABLE:
+            disable_sticky(HOME_LAYER_BITS);
+            return false;
+        case STICKY_HOME_USE_DEFAULT:
+            set_sticky_home(STICKY_DEFAULT_LAYER);
+            to_default_layer();
+            return false;
+        case STICKY_HOME_USE_HOME:
+            set_sticky_home(STICKY_HOME_LAYER);
+            to_home_layer();
+            return false;
+
+        case STICKY_LIGHT_ENABLE:
             enable_sticky(PRETTY_LIGHTING_BITS);
             return false;
-        case STICKY_LIGHT_OFF:
+        case STICKY_LIGHT_DISABLE:
             disable_sticky(PRETTY_LIGHTING_BITS);
             return false;
-        case STICKY_LIGHT_TOGGLE:
-            try_toggle_sticky_value(PRETTY_LIGHTING_BITS);
-            return false;
-        case STICKY_LIGHT_SET_PRETTY:
+        case STICKY_LIGHT_USE_PRETTY:
             set_sticky_pretty(STICKY_PRETTY_LIGHTING);
             return false;
-        case STICKY_LIGHT_SET_DISABLED:
-            set_sticky_pretty(STICKY_DISABLE_LIGHTING);
+        case STICKY_LIGHT_USE_NO_LIGHTING:
+            set_sticky_pretty(STICKY_NO_LIGHTING);
             return false;
 
         case GOTO_DFL:

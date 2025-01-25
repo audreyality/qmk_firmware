@@ -64,7 +64,7 @@ void set_pretty_speed(uint8_t speed) {
 }
 
 void set_source(animation_source source) {
-    if(use_sticky_pretty(STICKY_DISABLE_LIGHTING)) {
+    if(use_sticky_pretty(STICKY_NO_LIGHTING)) {
         rgb_matrix_disable_noeeprom();
         return;
     }

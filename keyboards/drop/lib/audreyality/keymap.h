@@ -35,7 +35,7 @@ enum layer_names {
 };
 
 enum custom_keycodes {
-    RESERVED = SAFE_RANGE,
+    SAVE_SETTINGS = SAFE_RANGE,
 
     // MACOS keyboard support
     MACOS_SPOTLIGHT,
@@ -43,18 +43,18 @@ enum custom_keycodes {
     MACOS_FOCUS,
     // TODO: MACOS_GLOBE // <- for emoji; requires vendor hack
 
-    // boot layer controls
+    // boot controls
     SWAP_DFL_HOME,
-    STICKY_HOME_ON,
-    STICKY_HOME_OFF,
+    STICKY_HOME_ENABLE,
+    STICKY_HOME_DISABLE,
     STICKY_HOME_TOGGLE,
-    STICKY_HOME_SET_DEFAULT,
-    STICKY_HOME_SET_HOME,
-    STICKY_LIGHT_ON,
-    STICKY_LIGHT_OFF,
+    STICKY_HOME_USE_DEFAULT,
+    STICKY_HOME_USE_HOME,
+    STICKY_LIGHT_ENABLE,
+    STICKY_LIGHT_DISABLE,
     STICKY_LIGHT_TOGGLE,
-    STICKY_LIGHT_SET_PRETTY,
-    STICKY_LIGHT_SET_DISABLED,
+    STICKY_LIGHT_USE_PRETTY,
+    STICKY_LIGHT_USE_NO_LIGHTING,
 
     // layer selection
     GOTO_DFL,
@@ -104,9 +104,18 @@ enum custom_keycodes {
 #define _NUMPD_ GOTO_XTL_NUMPAD
 #define _L_E_D_ GOTO_XTL_LED_MATRIX
 // reserved to save audreyality state to eeprom
-#define S_A_V_E XXXXXXX
+#define S_A_V_E SAVE_SETTINGS
 // reserved to output audreyality state as text
 #define _PRINT_ XXXXXXX
+
+// sticky bits shorthand
+#define STH_ON  STICKY_HOME_ENABLE
+#define STH_OFF STICKY_HOME_DISABLE
+#define STH_DEF STICKY_HOME_USE_DEFAULT
+#define STL_OFF STICKY_LIGHT_DISABLE
+#define STLNONE STICKY_LIGHT_USE_NO_LIGHTING
+#define STLPRTY STICKY_LIGHT_USE_PRETTY
+
 
 // layer control shorthand
 #define DF_MCOS DF(_DFL_MACOS)
@@ -114,8 +123,8 @@ enum custom_keycodes {
 #define OS_FUNL OSL(_XTL_FUNCTION)
 #define MO_CTLL MO(_XTL_CONTROL)
 #define MO_LEDM TG(_XTL_LED_MATRIX)
-#define TG_NUMP XXXXXXX
-#define TG_PROG XXXXXXX
+#define TG_NUMP TG(_XTL_NUMPAD)
+#define TG_PROG TG(_DTL_PROGRAMMING)
 #define TG_LEDM TG(_XTL_LED_MATRIX)
 #define TG_HELL TG(_DTL_HELLDIVERS)
 

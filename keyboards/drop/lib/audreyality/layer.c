@@ -47,11 +47,16 @@ void to_layer(uint8_t layer) {
     switch (layer) {
         case _DFL_MACOS:
         case _DFL_WINDOWS:
+            try_set_sticky_value(HOME_LAYER_BITS, STICKY_DEFAULT_LAYER);
             layer_move(layer);
             return;
 
         case _DTL_HELLDIVERS:
         case _DTL_PROGRAMMING:
+            if(layer == AUD_DTL_HOME_LAYER) {
+                try_set_sticky_value(HOME_LAYER_BITS, STICKY_HOME_LAYER);
+            }
+
             layer_move(qmk_dfl());
             layer_on(layer);
             return;
