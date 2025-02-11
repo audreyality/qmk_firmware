@@ -68,9 +68,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case GOTO_DTL_HELLDIVERS:
             to_layer(_DTL_HELLDIVERS);
             return false;
+
+#       ifdef ENABLE_DTL_PROGRAMMING
         case GOTO_DTL_PROGRAMMING:
             to_layer(_DTL_PROGRAMMING);
             return false;
+#       endif
+
         case GOTO_XTL_MASK:
             to_layer(_XTL_MASK);
             return false;
@@ -78,9 +82,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             set_source(PRETTY);
             to_layer(_XTL_LED_MATRIX);
             return false;
+
+#       ifdef ENABLE_XTL_NUMPAD
         case GOTO_XTL_NUMPAD:
             to_layer(_XTL_NUMPAD);
             return false;
+#       endif
 
         // light source controls override the default layer behavior
         case USE_LAYER_LIGHT_SOURCE:
@@ -125,17 +132,21 @@ layer_state_t layer_state_set_user(layer_state_t state) {
             set_layer_speed(XTL_FUNCTION_HUE_OFFSET);
             goto animate_layer;
 
+#       ifdef ENABLE_XTL_NUMPAD
         case _XTL_NUMPAD:
             set_layer_mode(RGB_MATRIX_SOLID_COLOR);
             set_layer_hsv(XTL_NUMPAD_HSV);
             goto animate_layer;
+#       endif
 
+#       ifdef ENABLE_DTL_PROGRAMMING
         case _DTL_PROGRAMMING:
             // paints "alpha" keys hsv and "mod" keys with hue offset
             set_layer_mode(RGB_MATRIX_ALPHAS_MODS);
             set_layer_hsv(DTL_PROGRAMMING_HSV);
             set_layer_speed(DTL_PROGRAMMING_HUE_OFFSET);
             goto animate_layer;
+#       endif
 
         case _DTL_HELLDIVERS:
             // fast-fades from hue offset to layer hsv

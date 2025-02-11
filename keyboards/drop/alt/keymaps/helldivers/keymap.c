@@ -20,12 +20,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     ///////////////////////////////////////////////////////////// Default Task Layers //////////////////////////////////////////////////////////////
     [_DTL_HELLDIVERS] = LAYOUT_65_ansi_blocker(
-        XXXXXXX, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, D_F_L_T,
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_F13,
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          XXXXXXX, KC_F14,
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_LCTL,          _______, KC_F15,
+        XXXXXXX, _______, _______, _______, _______, _______, XXXXXXX, KC_PSLS, KC_PAST, KC_PMNS, KC_F10,  KC_F11,  KC_F12,  _______, D_F_L_T,
+        _______, _______, _______, _______, _______, KC_O,    KC_KP_7, KC_KP_8, KC_KP_9, KC_PPLS, XXXXXXX, _______, _______, _______, KC_F13,
+        _______, _______, _______, _______, _______, _______, KC_KP_4, KC_KP_5, KC_KP_6, KC_TAB,  XXXXXXX, _______,          XXXXXXX, KC_F14,
+        _______, _______, _______, _______, _______, KC_KP_0, KC_KP_1, KC_KP_2, KC_KP_3, KC_PDOT, XXXXXXX, KC_LCTL,          _______, KC_F15,
         KC_LCTL, KC_X,    KC_LALT,                            _______,                            XXXXXXX, XXXXXXX, _______, _______, _______
     ),
+#   ifdef ENABLE_DTL_PROGRAMMING
     [_DTL_PROGRAMMING] = LAYOUT_65_ansi_blocker(
         KC_GRV,  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, H_O_M_E,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_F2,
@@ -33,6 +34,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         SC_LSPO, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, SC_RSPC,          _______, KC_F12,
         _______, _______, _______,                            _______,                            CTLRSVP, FNLRSVP, _______, _______, _______
     ),
+#   endif
     /////////////////////////////////////////////////////////// Exclusive Task Layers //////////////////////////////////////////////////////////////
     [_XTL_MASK] = LAYOUT_65_ansi_blocker(
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, H_O_M_E,
@@ -48,6 +50,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RM_HUED,          RM_SPDU, RM_VALD,
         STL_OFF, STLNONE, STLPRTY,                            XTLRSVP,                            CTLRSVP, FNLRSVP, RM_PREV, RM_SPDD, RM_NEXT
     ),
+#   ifdef ENABLE_XTL_NUMPAD
     [_XTL_NUMPAD] = LAYOUT_65_ansi_blocker(
         _______, _______, _______, _______, _______, _______, KC_PAST, KC_PSLS, _______, _______, _______, _______, _______, KC_BSPC, XTLRSVP,
         _______, _______, _______, _______, _______, _______, KC_KP_7, KC_KP_8, KC_KP_9, KC_TAB,  _______, _______, _______, _______, _______,
@@ -55,6 +58,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, _______, _______, _______, KC_KP_0, KC_KP_1, KC_KP_2, KC_KP_3, KC_PDOT, _______, KC_PENT,          KC_UP,   _______,
         _______, _______, _______,                            XTLRSVP,                            CTLRSVP, FNLRSVP, KC_LEFT, KC_DOWN, KC_RGHT
     ),
+#   endif
     //////////////////////////////////////////////////////////////////// High-touch Layers (ALWAYS LAST) //////////////////////////////////////////////////////////////
     [_XTL_FUNCTION] = LAYOUT_65_ansi_blocker(
         _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_DEL,  XXXXXXX,

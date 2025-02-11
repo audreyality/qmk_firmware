@@ -16,9 +16,12 @@ uint8_t qmk_dtl(void) {
     uint8_t dtl = 0;
     if(layer_state_is(_DTL_HELLDIVERS)) {
         dtl = _DTL_HELLDIVERS;
-    } else if(layer_state_is(_DTL_PROGRAMMING)) {
+    }
+#   ifdef ENABLE_DTL_PROGRAMMING
+    else if(layer_state_is(_DTL_PROGRAMMING)) {
         dtl = _DTL_PROGRAMMING;
     }
+#   endif
 
     return dtl;
 }
@@ -52,7 +55,9 @@ void to_layer(uint8_t layer) {
             return;
 
         case _DTL_HELLDIVERS:
+#       ifdef ENABLE_DTL_PROGRAMMING
         case _DTL_PROGRAMMING:
+#       endif
             if(layer == AUD_DTL_HOME_LAYER) {
                 try_set_sticky_value(HOME_LAYER_BITS, STICKY_HOME_LAYER);
             }

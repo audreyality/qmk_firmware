@@ -14,7 +14,9 @@ enum layer_names {
     //       * They are mostly transparent to a default layer.
     //       * Their enabled state persists across reboots in eeprom.
     _DTL_HELLDIVERS,
+#   ifdef ENABLE_DTL_PROGRAMMING
     _DTL_PROGRAMMING,
+#   endif
 
     // XTL - exclusive task layer; these layers are typically toggled
     //       into `TG(AUD_XTL_NUMPAD)`
@@ -27,7 +29,9 @@ enum layer_names {
     _XTL_MASK,
     _XTL_FUNCTION,
     _XTL_LED_MATRIX,
+#   ifdef ENABLE_XTL_NUMPAD
     _XTL_NUMPAD,
+#   endif
 
     // `_XTL_CONTROL` must be last to maintain universal reachability
     _XTL_CONTROL
@@ -60,9 +64,13 @@ enum custom_keycodes {
     GOTO_DFL,
     GOTO_DTL_HOME,        // board-configurable w/ #define
     GOTO_DTL_HELLDIVERS,
+#   ifdef ENABLE_DTL_PROGRAMMING
     GOTO_DTL_PROGRAMMING,
+#   endif
     GOTO_XTL_MASK,
+#   ifdef ENABLE_XTL_NUMPAD
     GOTO_XTL_NUMPAD,
+#   endif
     GOTO_XTL_LED_MATRIX,
 
     // runtime lighting controls
@@ -99,10 +107,20 @@ enum custom_keycodes {
 #define SWAP_OS SWAP_DFL_HOME
 #define H_O_M_E GOTO_DTL_HOME
 #define D_I_V_E GOTO_DTL_HELLDIVERS
-#define C_O_D_E GOTO_DTL_PROGRAMMING
+#ifdef ENABLE_DTL_PROGRAMMING
+#  define C_O_D_E GOTO_DTL_PROGRAMMING
+#else
+#  define C_O_D_E XXXXXXX
+#endif
+
 #define M_A_S_K GOTO_XTL_MASK
-#define _NUMPD_ GOTO_XTL_NUMPAD
+#ifdef ENABLE_XTL_NUMPAD
+#  define _NUMPD_ GOTO_XTL_NUMPAD
+#else
+#  define _NUMPD_ XXXXXXX
+#endif
 #define _L_E_D_ GOTO_XTL_LED_MATRIX
+
 // reserved to save audreyality state to eeprom
 #define S_A_V_E SAVE_SETTINGS
 // reserved to output audreyality state as text
@@ -123,8 +141,19 @@ enum custom_keycodes {
 #define OS_FUNL OSL(_XTL_FUNCTION)
 #define MO_CTLL MO(_XTL_CONTROL)
 #define MO_LEDM TG(_XTL_LED_MATRIX)
-#define TG_NUMP TG(_XTL_NUMPAD)
-#define TG_PROG TG(_DTL_PROGRAMMING)
+
+#ifdef ENABLE_XTL_NUMPAD
+#  define TG_NUMP TG(_XTL_NUMPAD)
+#else
+#  define TG_NUMP XXXXXXX
+#endif
+
+#ifdef ENABLE_DTL_PROGRAMMING
+#  define TG_PROG TG(_DTL_PROGRAMMING)
+#else
+#  define TG_PROG XXXXXXX
+#endif
+
 #define TG_LEDM TG(_XTL_LED_MATRIX)
 #define TG_HELL TG(_DTL_HELLDIVERS)
 
