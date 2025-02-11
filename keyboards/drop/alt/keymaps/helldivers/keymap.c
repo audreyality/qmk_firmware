@@ -48,7 +48,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RM_SATD,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          RM_HUEU, RM_VALU,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RM_HUED,          RM_SPDU, RM_VALD,
-        STL_OFF, STLNONE, STLPRTY,                            XTLRSVP,                            CTLRSVP, FNLRSVP, RM_PREV, RM_SPDD, RM_NEXT
+        _______, _______, _______,                            XTLRSVP,                            CTLRSVP, FNLRSVP, RM_PREV, RM_SPDD, RM_NEXT
     ),
 #   ifdef ENABLE_XTL_NUMPAD
     [_XTL_NUMPAD] = LAYOUT_65_ansi_blocker(
